@@ -36,11 +36,12 @@ public class Controller {
     	t1.setFoo("T1");
     	Thing t2 = new Thing();
     	t2.setFoo("T2");
-    	t2.setDerivedFrom(t1);
     	List<Thing> things = new ArrayList<Thing>();
     	things.add(t1);
     	things.add(t2);
     	thingRepository.save(things, 1);
+    	
+    	
     }
     
 }
