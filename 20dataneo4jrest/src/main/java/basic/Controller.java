@@ -1,16 +1,15 @@
 package basic;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import basic.model.DerivedFrom;
 import basic.model.Thing;
+import basic.repo.DerivedFromRepository;
 import basic.repo.ThingRepository;
 
 @RestController
@@ -19,6 +18,8 @@ public class Controller {
 
 	@Autowired 
 	private ThingRepository thingRepository;
+	@Autowired 
+	private DerivedFromRepository derivedFromRepository;
 	
     @RequestMapping("/")
     public String home() {
@@ -41,7 +42,11 @@ public class Controller {
     	things.add(t2);
     	thingRepository.save(things, 1);
     	
-    	
+    	DerivedFrom d = new DerivedFrom();
+    	d.setParent(t1);
+    	d.setChild(t2);
+    	t2.setDerivedFrom(t1);
+    	derivedFromRepository.save(d, 2);
     }
     
 }
