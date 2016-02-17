@@ -1,8 +1,9 @@
 package basic.model;
 
+import java.util.Objects;
+
 import org.neo4j.ogm.annotation.EndNode;
 import org.neo4j.ogm.annotation.GraphId;
-import org.neo4j.ogm.annotation.Property;
 import org.neo4j.ogm.annotation.RelationshipEntity;
 import org.neo4j.ogm.annotation.StartNode;
 
@@ -12,37 +13,58 @@ public class DerivedFrom {
     @GraphId   
     private Long id;
     
-    @Property  
-    private String title; 
+    private String foo; 
     
     @StartNode 
-    private Thing child;
+    private Thing parent;
     
     @EndNode   
-    private Thing parent;
+    private Thing child;
 
-	public String getTitle() {
-		return title;
+	public String getFoo() {
+		return foo;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setFoo(String foo) {
+		this.foo = foo;
 	}
 
 	public Thing getChild() {
 		return child;
 	}
 
-	public void setChild(Thing child) {
-		this.child = child;
-	}
-
 	public Thing getParent() {
 		return parent;
 	}
-
-	public void setParent(Thing parent) {
-		this.parent = parent;
+	
+	public DerivedFrom() {
+		
 	}
+	
+	public DerivedFrom(Thing parent, Thing child, String foo) {
+		this.parent = parent;
+		this.child = child;
+		this.foo = foo;
+	}
+
+	@Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof DerivedFrom)) {
+            return false;
+        }
+
+        DerivedFrom other = (DerivedFrom) o;
+		return Objects.equals(parent, other.parent)
+				&& Objects.equals(child, other.child)
+				&& Objects.equals(foo, other.foo);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(foo, child, parent);
+    }
 	
 }

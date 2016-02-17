@@ -11,6 +11,8 @@ import org.springframework.data.neo4j.config.Neo4jConfiguration;
 import org.springframework.data.neo4j.repository.config.EnableNeo4jRepositories;
 import org.springframework.data.neo4j.server.Neo4jServer;
 import org.springframework.data.neo4j.server.RemoteServer;
+import org.springframework.data.neo4j.template.Neo4jOperations;
+import org.springframework.data.neo4j.template.Neo4jTemplate;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
@@ -39,6 +41,11 @@ public class MyConfiguration extends Neo4jConfiguration {
     public Session getSession() throws Exception {
         return super.getSession();
     }
+	
+	@Bean
+	 public Neo4jOperations getNeo4jTemplate() throws Exception {
+	     return new Neo4jTemplate(getSession());
+	 }
 
     public static void main(String[] args) throws Exception {
         SpringApplication.run(MyConfiguration.class, args);
