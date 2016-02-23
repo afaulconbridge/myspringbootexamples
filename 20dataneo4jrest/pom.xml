@@ -28,15 +28,6 @@
 			<version>4.0.0.RELEASE</version>
 		</dependency>
 	</dependencies>
-	
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 
 	<repositories>
 		<!-- (you don't need this if you are using a .RELEASE version) -->
@@ -63,4 +54,13 @@
 			<url>http://repo.spring.io/milestone</url>
 		</pluginRepository>
 	</pluginRepositories>
+	
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>
