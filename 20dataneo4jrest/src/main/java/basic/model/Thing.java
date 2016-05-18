@@ -38,28 +38,17 @@ public class Thing {
 	public void setDerivedFrom(DerivedFrom derivedFrom) {
 		this.derivedFrom = derivedFrom;
 	}
-	
-	@Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Thing)) {
-            return false;
-        }
 
-        Thing other = (Thing) o;
+    @Relationship(type = "DERIVED_FROM", direction=Relationship.INCOMING)
+    @JsonIgnore //to prevent infinite recursion on JSON serialization
+	private DerivedFrom derivedTo;
 
-        if (id != null && other.id != null) {
-        	return id.equals(other.id);
-        } else {
-        	return true;
-        }
-    }
+	public DerivedFrom getDerivedTo() {
+		return derivedTo;
+	}
 
-    @Override
-    public int hashCode() {
-        return id != null ? id.hashCode() : 0;
-    }
+	public void setDerivedTo(DerivedFrom derivedTo) {
+		this.derivedTo = derivedTo;
+	}
 
 }

@@ -1,1 +1,8 @@
-neo4j.url=http://username:password@neo-server:port
+# NEO4J (Neo4jProperties)
+spring.data.neo4j.compiler= # Compiler to use.
+spring.data.neo4j.embedded.enabled=true # Enable embedded mode if the embedded driver is available.
+spring.data.neo4j.password= # Login password of the server.
+spring.data.neo4j.repositories.enabled=true # Enable Neo4j repositories.
+spring.data.neo4j.session.scope=singleton # Scope (lifetime) of the session.
+spring.data.neo4j.uri= # URI used by the driver. Auto-detected by default.
+spring.data.neo4j.username= # Login user of the server.
